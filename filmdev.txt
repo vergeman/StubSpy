@@ -1,14 +1,19 @@
 TODO:
+deploy heroku
+
 test parsing
 
 design algo
    inputs, outputs, etc.
 
-
+test db schema
 
 DONE
 choose domain: stubspy.com
 setup repo
+get gems
+    nokogiri
+    pg
 
 
 
