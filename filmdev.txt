@@ -1,0 +1,48 @@
+TODO:
+test parsing
+
+design algo
+   inputs, outputs, etc.
+
+
+
+DONE
+choose domain: stubspy.com
+setup repo
+
+
+
+==arch==
+/movies?
+near=zip?
+&tid=theater id
+&mid-movie id
+
+==db==
+mid(id, name, review (idmb)
+tid(id, name, addr)
+
+nearzip(cache)
+
+
+
+
+==Parse==
+#movie_results
+	.movie_results
+		.theater (n of them)
+			 .desc
+			 h2 .name a ="....&tid?"
+			 .info -- address here--
+
+			 .showtimes
+				.show_left
+					.movie
+
+.movie
+	.name a = **&mid			
+	.info (ratinga nd such)
+
+	.times
+		<span> times are here </span
+
