@@ -1,44 +1,23 @@
 class MoviesController < ApplicationController
 
-  require 'geoip'
-
   def show
 
-    #if not passed in via post (i.e. selected) use default
-    ip_addr = request.remote_ip
-    g = GeoIP.new('GeoLiteCity.dat').city(ip_addr)
-    coords = [g.latitude, g.longitude]
-
-
-
-
-
+    #will pass a parameter to indicate want more results (i..e the 2dn page
 
     #return results
     respond_to do |format|
 
-      format.json { render :json => {:g =>g, :test => noko_movies(coords) } }
+      format.json {
+        #if not passed in via post (i.e. selected) use default
+        ml = MovieListings.new(:ip_addr => request.remote_ip)
+        #ml.load
+
+        render :json => { :coords => ml.ip_addr }}
+
       format.html
 
     end
 
   end
-
-
-
-  
-private 
-  #build request w/ location
-
-
-
-  def noko_movies(coords)
-    coords[0]
-    
-
-
-  end
-
-
 
 end
