@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 *.gemspec
 node/ruby/
+GeoLiteCity.dat
+*.*~

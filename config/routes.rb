@@ -1,4 +1,11 @@
 StubSpy::Application.routes.draw do
+  match '/movies', :to => 'movies#show'
+
+  root :to => 'pages#home'
+
+
+  #get "pages/home"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

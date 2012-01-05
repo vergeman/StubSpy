@@ -4,6 +4,7 @@ gem 'rails', '3.1.0'
 gem 'pg'
 gem 'heroku'
 gem 'nokogiri'
+gem 'geoip'
 
 #gem 'sqlite3'
 
