@@ -33,7 +33,7 @@ private
 
 
   def noko_movies(coords)
-
+    coords[0]
     
 
 
