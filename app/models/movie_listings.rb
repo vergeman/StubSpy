@@ -34,8 +34,8 @@ class MovieListings
 
 
      #algo time
-     
 
+     
 
      #utility and parsing foos
      private 
@@ -62,8 +62,8 @@ class MovieListings
 
      def get_doc(coords)
           #will pass a parameter to indicate want more results (i..e the 2dn page
-          url = URI("http://google.com/movies?near=#{coords[0]},"\
-                    "#{coords[1]}&view=list")
+          url = URI("http://google.com/movies?near="\
+                    "#{coords[0]},#{coords[1]}&view=list")
 
           doc_str = Net::HTTP.get(url)
      end
@@ -71,46 +71,14 @@ class MovieListings
 
 
      def parse_showtimes(movie_noko, movie, css_key)
-          pm = false
-          times_24 = []
-          now = Time.now
           
-          movie_noko.css(css_key).each do |times|
-               times = (times.text.
-                        to_s.scan(/([0-9]+:[0-9]+[am|pm]*)/))
+          movie_noko.css(css_key).each do |t|
 
-               #convert to '24hr' for consistency
-               #start backwards to make sure its am or pm
-               times.reverse_each do |t|
-                    hr, min = t[0].to_s.split(':', 2)
+               showtimes = t.text.to_s.scan(/([0-9]+:[0-9]+[am|pm]*)/)
 
-                    #midnight seems to be latest
-                    if (!pm && min.include?("am") && hr.to_i == 12)
-                         t = Time.new(now.year, now.month, now.day + 1,
-                                      hr.to_i - 12, min[/[0-9]+/])
+               movie.set_mtimes showtimes
 
-                    elsif (!pm && min.include?("am"))
-                         pm = false
-
-                         t = Time.new(now.year, now.month, now.day,
-                                      hr.to_i, min[/[0-9]+/])
-
-                    elsif (pm || min.include?("pm"))
-                         pm = true
-                         augment = 0
-                         if (hr.to_i != 12)
-                              augment = 12
-                         end
-
-                         t = Time.new(now.year, now.month, now.day,
-                                      hr.to_i + augment, min[/[0-9]+/])
-
-                    end
-                    #logger.debug(t)
-                    times_24.push t
-               end
-
-               movie.mtimes = times_24
+               #Rails.logger.debug(movie.mtimes)
           end
      end
 
@@ -126,8 +94,6 @@ class MovieListings
                                   :mid => ahref.attr('href').to_s[/mid(.*)/],
                                   :mduration => 
                                   m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/])
-
-
 
                #grab showtimes
                parse_showtimes(m, movie, '.times')
