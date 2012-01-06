@@ -1,3 +1,5 @@
+#locally defined per theater, not BNF-ish
+
 class Movies
 
   attr_accessor :mname, :mlink, :mid, :mtimes, :mduration

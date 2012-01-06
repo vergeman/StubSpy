@@ -27,13 +27,17 @@ class MovieListings
      def load
           t = parse_doc get_doc get_coords(ip_addr)
           
-          #test_print(t)
+          test_print(t)
           t
      end
 
 
 
+     #algo time
+     
 
+
+     #utility and parsing foos
      private 
 
      def test_print(t)
@@ -44,6 +48,7 @@ class MovieListings
                z.tmovies.each { |m| 
                     puts m.mname
                     puts m.mlink
+                    puts m.mtimes
                }
           }          
      end
@@ -66,13 +71,46 @@ class MovieListings
 
 
      def parse_showtimes(movie_noko, movie, css_key)
-          times = []
-
+          pm = false
+          times_24 = []
+          now = Time.now
+          
           movie_noko.css(css_key).each do |times|
                times = (times.text.
                         to_s.scan(/([0-9]+:[0-9]+[am|pm]*)/))
 
-               movie.mtimes = times
+               #convert to '24hr' for consistency
+               #start backwards to make sure its am or pm
+               times.reverse_each do |t|
+                    hr, min = t[0].to_s.split(':', 2)
+
+                    #midnight seems to be latest
+                    if (!pm && min.include?("am") && hr.to_i == 12)
+                         t = Time.new(now.year, now.month, now.day + 1,
+                                      hr.to_i - 12, min[/[0-9]+/])
+
+                    elsif (!pm && min.include?("am"))
+                         pm = false
+
+                         t = Time.new(now.year, now.month, now.day,
+                                      hr.to_i, min[/[0-9]+/])
+
+                    elsif (pm || min.include?("pm"))
+                         pm = true
+                         augment = 0
+                         if (hr.to_i != 12)
+                              augment = 12
+                         end
+
+                         t = Time.new(now.year, now.month, now.day,
+                                      hr.to_i + augment, min[/[0-9]+/])
+
+                    end
+                    #logger.debug(t)
+                    times_24.push t
+               end
+
+               movie.mtimes = times_24
           end
      end
 
