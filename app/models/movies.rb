@@ -30,7 +30,8 @@ class Movies
             hr, min = t[0].to_s.split(':', 2)
 
             #midnight seems to be latest
-            if (!pm && min.include?("am") && hr.to_i == 12)
+            if ((!pm && min.include?("am") && hr.to_i == 12) ||
+                ((!pm && hr.to_i == 12)))
                  t = Time.new(now.year, now.month, now.day + 1,
                               hr.to_i - 12, min[/[0-9]+/])
 

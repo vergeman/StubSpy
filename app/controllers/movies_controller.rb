@@ -1,22 +1,29 @@
 class MoviesController < ApplicationController
 
-  def show
+     def show
 
-    #will pass a parameter to indicate want more results (i..e the 2dn page
+          #TODO: will pass a parameter to
+          #indicate want more results (i..e the 2dn page
 
-    #return results
-    respond_to do |format|
+          #return results
+          respond_to do |format|
 
-      format.json {
-        #if not passed in via post (i.e. selected) use default
-        ml = MovieListings.new(:ip_addr => request.remote_ip)
+               format.json {
+                    #if not passed in via post (i.e. selected) use default
+                    ml = MovieListings.new(:ip_addr => request.remote_ip)
 
-        render :json => { :coords => ml.ip_addr }}
+                    render :json => { :listings => ml.listings }
+               }
+               
+               format.html {
+                    ml = MovieListings.new(:ip_addr => request.remote_ip)
 
-      format.html
+                    render :json => { :listings => ml.listings }
+               }
 
-    end
 
-  end
+          end
+
+     end
 
 end

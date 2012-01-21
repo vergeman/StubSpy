@@ -5,7 +5,7 @@ class MovieListings
      require 'open-uri'
      require 'nokogiri'
 
-     attr_accessor :ip_addr, :theaters
+     attr_accessor :ip_addr, :theaters, :listings
 
      def initialize(attributes = {})
           attributes.each do |name, value|
@@ -25,15 +25,24 @@ class MovieListings
 
      #build listings
      def load
+
+          #TODO: select from cache based on ip_addr / location
+          self.listings = []
+
           t = parse_doc get_doc get_coords(ip_addr)
-          
-          test_print(t)
+
+          t.each { |z|
+               puts z.tname
+               results = z.calc
+               self.listings.push( {:tname => z.tname,
+                                        :list => results,
+                                        :tscore => results.length} )
+          }
+
+          self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
+          #test_print(t)
           t
      end
-
-
-
-     #algo time
 
      
 
@@ -53,7 +62,7 @@ class MovieListings
           }          
      end
 
-     #build request w/ location
+     #build request w/ location ==> return pair of lat/long
      def get_coords(_ip_addr)
           g = GeoIP.new('GeoLiteCity.dat').city(_ip_addr)
           [g.latitude, g.longitude]
@@ -78,7 +87,6 @@ class MovieListings
 
                movie.set_mtimes showtimes
 
-               #Rails.logger.debug(movie.mtimes)
           end
      end
 
