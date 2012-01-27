@@ -23,22 +23,28 @@ time
      &time = {1,2,3,4} = morning, afternoon, evening, late
 
 
-
-
 TODO:
 outline RESTful service paths
 
+add db/caching schema
+
+some places have 24hr time by default - need to change parsing logic to accomdate non-am/pm countries (i.e. dublin, IE)
+
+inputs:
+add location parameter; an arg for js request
+    movie parameter - to filter, possibly rescore
+    time paramter - filter results based on valid timeframe input
 
 
-test scrape & data parse
+--droid
 
-design algo
-   inputs, outputs, etc.
 
-test db schema
+	build basic req/response and display of data
 
 
 ==DONE==
+complete install of droid sdk
+
 choose domain: stubspy.com
 
 setup repo
@@ -46,6 +52,12 @@ setup repo
 get gems
     nokogiri
     pg
+
+test scrape & data parse
+
+design algo
+   inputs, outputs, etc.
+
 
 deploy heroku
 

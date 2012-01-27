@@ -17,6 +17,7 @@ class Movies
     false
   end
 
+  #TODO: don't change to 24hr time if not already 24 hr time
 
   def set_mtimes(times)
        pm = false

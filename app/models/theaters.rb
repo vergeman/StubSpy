@@ -56,6 +56,7 @@ M2----------M2--------M2-------
 
   #iterate through movie times, see if there is a movie within range
   #of the "latest_movie"
+
   def get_next_time(latest_movie, movie)
        #last movie is Movie_tuple v. movie obj
        m_time = latest_movie.time + latest_movie.duration.minutes
