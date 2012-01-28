@@ -3,6 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'pg'
 gem 'heroku'
+gem 'thin'
+gem 'node'
 gem 'nokogiri'
 gem 'geoip'
 

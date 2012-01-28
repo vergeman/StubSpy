@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$size: 8em;
+
 #splash {
+
 	text-align: center;
+
+	h1 {
+	   	font-size: $size;
+	}
 }
+
+
+
