@@ -12,11 +12,13 @@ class MoviesController < ApplicationController
                     #if not passed in via post (i.e. selected) use default
                     ml = MovieListings.new(:ip_addr => request.remote_ip)
 
-                    render :json => { :listings => ml.listings }
+                    render :json => { :listings => ml.listings }                
                }
                
                format.html {
-                    ml = MovieListings.new(:ip_addr => request.remote_ip)
+                    ml = MovieListings.new(:ip_addr => request.remote_ip,
+                                           :location => params[:location])
+
 
                     render :json => { :listings => ml.listings }
                }

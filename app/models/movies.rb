@@ -10,6 +10,7 @@ class Movies
     end
 
        self.mduration = convert_duration
+
   end
 
 

@@ -105,13 +105,11 @@ M2----------M2--------M2-------
   def populate(movie_tuples)
 
        self.tmovies.each { |movie| 
-
             movie.mtimes.each { |time| 
                  m = []
                  m.push(Movie_tuple.new(movie.mname, time, movie.mduration))
                  movie_tuples.push(m)
             }
-            
        }
   end
 

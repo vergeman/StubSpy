@@ -9,8 +9,10 @@
   font-style: normal;
 }
 
+$main_bg: #990000;
+
 body {
-	background-color: #990000;
+	background-color: $main_bg;
 	color: white;
 }
 
@@ -38,10 +40,10 @@ $desc_border: #600000;
 $shadow: $box_shadow_size $box_shadow_size 2px $desc_border;
 $border_radius: 0.2em;
 
-#description, #android, #browse {
-
+#description, #android {
 	margin-top: -1em;
 	background-color: $desc_bg;
+
 	border: 1px solid $desc_border;
 	border-radius: $border_radius;
 	-moz-border-radius: $border_radius;
@@ -59,4 +61,52 @@ $border_radius: 0.2em;
 		border: 1px solid black;
 	     }	     
 
+	     form {
+		 background-color: $main_bg;
+		 border-radius: $border_radius;
+		 border: 1px solid $desc_border;
+
+	     }
+	     fieldset {
+		 color: white;
+		 border: none;
+		 margin-bottom: -1em;
+	     }
+	     legend {
+		 #font-family: 'Bazar';
+		 #color: gold;
+		 #text-shadow: 1px 1px 1px black;
+	     }
 }
+
+.button {
+    border:none;
+    background-color: gold;
+    font-size: 1.2em;
+    cursor:pointer;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+    box-shadow: 2px 2px 4px #AD3333;
+    -moz-box-shadow: 2px 2px 4px #AD3333;
+
+    margin-top: 6px;
+    padding: 4px 8px;
+
+    &:hover {
+	background-color: #FFDF33;
+    }
+
+    &:active {
+	background-position: 0 top;
+	position: relative;
+	top: 1px;
+
+    }
+}
+
+
+
+
