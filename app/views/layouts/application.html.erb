@@ -15,14 +15,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
 <div class = "container">
 
-  <div class = "column span-24 showgrid">
+  <%= render 'layouts/header' %>
+
+  <div class = "span-24">
     <%= yield %>
   </div>
 
 
+  <%= render 'layouts/footer' %>
 </div>
 
 </body>
+
+
+
+
+
 </html>

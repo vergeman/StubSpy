@@ -2,16 +2,61 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$size: 8em;
+@font-face {
+  font-family: 'Bazar';
+  src: font-url('Bazar.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 
-#splash {
+body {
+	background-color: #990000;
+	color: white;
+}
 
-	text-align: center;
+$title_size: 4em;
+$shadow_size: 4px;
+
+#header {
 
 	h1 {
-	   	font-size: $size;
+	   font-family: 'Bazar';
+	   font-size: $title_size;
+	   color: gold;
+	   text-shadow: $shadow_size $shadow_size $shadow_size black;
+	}
+
+	#social {
+	   margin-top:$title_size;
+	   text-align:right;
 	}
 }
 
+$box_shadow_size: 1px;
+$desc_bg: #840000;
+$desc_border: #600000;
+$shadow: $box_shadow_size $box_shadow_size 2px $desc_border;
+$border_radius: 0.2em;
 
+#description, #android, #browse {
 
+	margin-top: -1em;
+	background-color: $desc_bg;
+	border: 1px solid $desc_border;
+	border-radius: $border_radius;
+	-moz-border-radius: $border_radius;
+
+	font-size: 1em;
+	
+	#box-shadow: $shadow;
+	#-moz-box-shadow: $shadow;
+
+	     #features {
+
+	     }	     
+	     #screenshot {
+	     	height: 200px;
+		border: 1px solid black;
+	     }	     
+
+}

@@ -3,6 +3,6 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 #toggled based on content existence
-#for page
-if $('#splash').html.length > 0
-   alert("hi");
+#for page, prevent FOUT
+#if $('#splash').html.length > 0
+#$("h1").css("visibility", "visible");
