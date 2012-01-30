@@ -3,23 +3,22 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @font-face {
-  font-family: 'Bazar';
-  src: font-url('Bazar.ttf');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Bazar';
+    src: font-url('Bazar.ttf');
+    font-weight: normal;
+    font-style: normal;
 }
 
 $main_bg: #990000;
 
 body {
-	background-color: $main_bg;
-	color: white;
+    background-color: $main_bg;
+    color: white;
 }
 
 $title_size: 4em;
 $movie_title_size: 1em;
 $shadow_size: 4px;
-
 
 @mixin header($type, $size) {
 
@@ -39,7 +38,6 @@ $shadow_size: 4px;
     }
 }
 
-
 #header {
     @include header(h1, $title_size);
     @include social($title_size);
@@ -53,46 +51,46 @@ $border_radius: 0.2em;
 
 @mixin boxes($background, $border_radius, $border_color, $shadow) {
 
-	background-color: $background;
+    background-color: $background;
 
-	border: 1px solid $border_color;
-	border-radius: $border_radius;
-	-moz-border-radius: $border_radius;
+    border: 1px solid $border_color;
+    border-radius: $border_radius;
+    -moz-border-radius: $border_radius;
 
-	font-size: 1em;
-	
-	#box-shadow: $shadow;
-	#-moz-box-shadow: $shadow;
+    font-size: 1em;
+    
+    #box-shadow: $shadow;
+    #-moz-box-shadow: $shadow;
 }
 
 #description, #android {
     margin-top: -1em;
     @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
 
-	     #features {
+    #features {
 
-	     }	     
-	     #screenshot {
-	     	height: 200px;
-		border: 1px solid black;
-	     }	     
+    }	     
+    #screenshot {
+	height: 200px;
+	border: 1px solid black;
+    }	     
 
-	     form {
-		 background-color: $main_bg;
-		 border-radius: $border_radius;
-		 border: 1px solid $desc_border;
+    form {
+	background-color: $main_bg;
+	border-radius: $border_radius;
+	border: 1px solid $desc_border;
 
-	     }
-	     fieldset {
-		 color: white;
-		 border: none;
-		 margin-bottom: -1em;
-	     }
-	     legend {
-		 #font-family: 'Bazar';
-		 #color: gold;
-		 #text-shadow: 1px 1px 1px black;
-	     }
+    }
+    fieldset {
+	color: white;
+	border: none;
+	margin-bottom: -1em;
+    }
+    legend {
+	#font-family: 'Bazar';
+	#color: gold;
+	#text-shadow: 1px 1px 1px black;
+    }
 }
 
 .button {
@@ -122,7 +120,3 @@ $border_radius: 0.2em;
 
     }
 }
-
-
-
-
