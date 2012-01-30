@@ -16,11 +16,12 @@ class MoviesController < ApplicationController
                }
                
                format.html {
-                    ml = MovieListings.new(:ip_addr => request.remote_ip,
+                    @movie_view = true
+                    @ml = MovieListings.new(:ip_addr => request.remote_ip,
                                            :location => params[:location])
 
 
-                    render :json => { :listings => ml.listings }
+                    #render :json => { :listings => ml.listings }
                }
 
 

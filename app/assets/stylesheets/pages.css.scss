@@ -17,21 +17,32 @@ body {
 }
 
 $title_size: 4em;
+$movie_title_size: 1em;
 $shadow_size: 4px;
 
+
+@mixin header($type, $size) {
+
+    #{$type} {
+	font-family: 'Bazar';
+	font-size: $size;
+	color: gold;
+	text-shadow: $shadow_size $shadow_size $shadow_size black;
+    }
+
+}
+
+@mixin social($title_size)  {
+    #social {
+	margin-top:$title_size;
+	text-align:right;
+    }
+}
+
+
 #header {
-
-	h1 {
-	   font-family: 'Bazar';
-	   font-size: $title_size;
-	   color: gold;
-	   text-shadow: $shadow_size $shadow_size $shadow_size black;
-	}
-
-	#social {
-	   margin-top:$title_size;
-	   text-align:right;
-	}
+    @include header(h1, $title_size);
+    @include social($title_size);
 }
 
 $box_shadow_size: 1px;
@@ -40,11 +51,11 @@ $desc_border: #600000;
 $shadow: $box_shadow_size $box_shadow_size 2px $desc_border;
 $border_radius: 0.2em;
 
-#description, #android {
-	margin-top: -1em;
-	background-color: $desc_bg;
+@mixin boxes($background, $border_radius, $border_color, $shadow) {
 
-	border: 1px solid $desc_border;
+	background-color: $background;
+
+	border: 1px solid $border_color;
 	border-radius: $border_radius;
 	-moz-border-radius: $border_radius;
 
@@ -52,6 +63,11 @@ $border_radius: 0.2em;
 	
 	#box-shadow: $shadow;
 	#-moz-box-shadow: $shadow;
+}
+
+#description, #android {
+    margin-top: -1em;
+    @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
 
 	     #features {
 

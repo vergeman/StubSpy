@@ -1,3 +1,17 @@
 // Place all the styles related to the Movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "pages.css.scss";
+
+#filters {
+    @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
+    @include header(h3, 1.4em);
+    position:fixed;
+    width: 160px;
+    height: 100%;
+    margin-top: -4em;
+}
+
+#results {
+    @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
+}
