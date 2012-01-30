@@ -34,8 +34,8 @@ $shadow_size: 4px;
 
 @mixin social($title_size)  {
     #social {
-	margin-top:$title_size;
-	text-align:right;
+	margin-top: $title_size;
+	text-align: right;
     }
 }
 

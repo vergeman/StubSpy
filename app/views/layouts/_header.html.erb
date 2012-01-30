@@ -1,27 +1,15 @@
 <div id="header" class="span-24">
-<!-- TODO: refactor this is just dumb -->
 
-  <% if @movie_view %>
+  <% unless @movie_view %>
 
-  <% else %>
   <div id="title" class="span-8 push-1 prepend-top">
     <h1>STUBSPY</h1>
-
-  <% end %>
-
   </div>
 
-  <% if @movie_view %>
- 
-  <div id="social" class="span-4 push-16 pull-1 last" style="margin-top:1em;">
-    social links here
-  </div>
-  <% else %>
   <div id="social" class="span-16 last">
     social links here
   </div>
 
   <% end %>
-
 
 </div>

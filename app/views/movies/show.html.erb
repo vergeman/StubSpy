@@ -1,24 +1,33 @@
-<!--
-lets put header grahpic in the filter bar
-so the whole fitler can remain fixed on scroll
+<div id="filters_wrap" class="span-4">
 
--->
-  <div id="filters">
+  <div id="title" class="span-4 prepend-top push-1">
+    <h3>STUBSPY</h3>
+  </div>
 
-    <div id="title" class="span-8">
-      <h3>STUBSPY</h3>
-    </div>
-
+  <div id="filters" class="push-1">
     filters
   </div>
 
-
-<div id="movies" class="prepend-top">
-
+</div>
 
 
-  <div id="results" class="span-19 push-5 last">
+<div id="controls_wrap" class="span-18 push-5">
+
+  <div id="controls" class="span-18">
+    controls
+  </div>
+
+  <div id="social" class="span-3 push-15 last">
+    social links here
+  </div>
+</div>
+
+
+<div id="movies" class="push-4">
+
+  <div id="results" class="span-18 push-1 last">
     results
     <%= @ml.listings %>
   </div>
+
 </div>
