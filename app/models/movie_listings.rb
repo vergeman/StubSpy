@@ -5,7 +5,7 @@ class MovieListings
      require 'open-uri'
      require 'nokogiri'
 
-     attr_accessor :ip_addr, :location, :theaters, :listings
+     attr_accessor :ip_addr, :location, :theaters, :listings, :min_time, :max_time
 
      def initialize(attributes = {})
           attributes.each do |name, value|
@@ -52,19 +52,31 @@ class MovieListings
 
           end
 
-          t = parse_doc get_doc coords
+          theaters = parse_doc get_doc coords
 
-          t.each { |z|
-               puts z.tname
-               results = z.calc
-               self.listings.push( {:tname => z.tname,
+          theaters.each { |theater|
+               puts theater.tname
+               results = theater.calc
+
+               set_min_max_time(theater.min_time, theater.max_time)
+
+               self.listings.push( {:tname => theater.tname,
                                         :list => results,
                                         :tscore => results.length} )
+
+
+               #puts "min: #{theater.min_time}"
+               #puts "max: #{theater.max_time}"
+
           }
 
           self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
-          #test_print(t)
-          t
+
+          puts self.min_time
+          puts self.max_time
+
+
+          theaters
      end
 
      #get default location (static call)
@@ -73,21 +85,21 @@ class MovieListings
      end
 
 
+
+
      #utility and parsing foos
-     private 
+     private
 
-     def test_print(t)
-          t.each { |z|
-               puts z
-               puts z.tid
+     def set_min_max_time(min, max)
+          if self.min_time.nil? || self.min_time > min
+               self.min_time = min
+          end
 
-               z.tmovies.each { |m| 
-                    puts m.mname
-                    puts m.mlink
-                    puts m.mtimes
-               }
-          }          
+          if self.max_time.nil? || self.max_time < max
+               self.max_time = max
+          end
      end
+
 
      #build request w/ location ==> return pair of lat/long
      def get_coords(_ip_addr)

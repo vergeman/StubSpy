@@ -6,7 +6,7 @@ class Theaters
   #include ActiveModel::Conversion
   #extend ActiveModel::Naming
 
-  attr_accessor :tname, :tlink, :tid, :tmovies, :tcalc
+  attr_accessor :tname, :tlink, :tid, :tmovies, :tcalc, :min_time, :max_time
 
 
   def initialize(attributes = {})
@@ -47,10 +47,24 @@ M2----------M2--------M2-------
             else
                  results.push({:movie_times => movie_time,
                                    :score => movie_time.length })
+
+                 set_max_min_times(movie_time)
             end
        end
 
        results.sort { |x,y| y[:score] <=> x[:score] }
+  end
+
+  #sets max and min of movie times ([])
+  def set_max_min_times(movie_time)
+
+       if self.min_time.nil? || (self.min_time > movie_time[0].time)
+            self.min_time = movie_time[0].time
+       end
+
+       if self.max_time.nil? || (self.max_time < movie_time[-1].time)
+            self.max_time = movie_time[-1].time
+       end
   end
 
 
