@@ -34,8 +34,9 @@ class Movies
             #midnight seems to be latest
             if ((!pm && min.include?("am") && hr.to_i == 12) ||
                 ((!pm && hr.to_i == 12)))
-                 t = Time.new(now.year, now.month, now.day + 1,
-                              hr.to_i - 12, min[/[0-9]+/])
+                 
+                 t = Time.new(now.year, now.month, now.day,
+                              hr.to_i - 12, min[/[0-9]+/]) + 24*60*60 #add a day
 
             elsif (!pm && min.include?("am"))
                  pm = false

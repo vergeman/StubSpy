@@ -63,7 +63,8 @@ M2----------M2--------M2-------
        end
 
        if self.max_time.nil? || (self.max_time < movie_time[-1].time)
-            self.max_time = movie_time[-1].time
+            self.max_time = movie_time[-1].time + 
+                 movie_time[-1].duration + TIME_BUF.minutes
        end
   end
 

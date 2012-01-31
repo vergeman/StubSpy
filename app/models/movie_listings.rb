@@ -54,6 +54,7 @@ class MovieListings
 
           theaters = parse_doc get_doc coords
 
+          #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
                puts theater.tname
                results = theater.calc
@@ -63,18 +64,9 @@ class MovieListings
                self.listings.push( {:tname => theater.tname,
                                         :list => results,
                                         :tscore => results.length} )
-
-
-               #puts "min: #{theater.min_time}"
-               #puts "max: #{theater.max_time}"
-
           }
 
           self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
-
-          puts self.min_time
-          puts self.max_time
-
 
           theaters
      end

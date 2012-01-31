@@ -1,4 +1,4 @@
-<div id="filters_wrap" class="span-4">
+<div id="filters_wrap" class="span-4 pull-1">
 
   <div id="title" class="span-4 prepend-top push-1">
     <h3>STUBSPY</h3>
@@ -23,11 +23,28 @@
 </div>
 
 
-<div id="movies" class="push-4">
+<div id="results_wrap" class="push-4">
 
   <div id="results" class="span-18 push-1 last">
-    results
-    <%= @ml.listings %>
+
+
+<!-- sample iteration -->
+    <% @ml.listings.each do |theater| %>
+    <br><br>
+      <em><%= theater[:tname] %></em>
+
+      <br>
+      <% theater[:list].each do |movie_times| %>
+      
+        <% movie_times[:movie_times].each do |res| %>
+         <%= res.name %>
+	<% end %>
+	<br><br>
+
+     <% end %>
+
+    <% end %>
+
   </div>
 
 </div>

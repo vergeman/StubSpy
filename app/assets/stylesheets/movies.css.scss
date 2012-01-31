@@ -15,5 +15,8 @@
 }
 
 #results {
-    @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
+    @include boxes(#fff, $border_radius, $desc_border, $shadow);
+    color: black;
+    height: 100%;
+    min-height: 780px;
 }
