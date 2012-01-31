@@ -11,21 +11,32 @@
 </div>
 
 
-<div id="controls_wrap" class="span-18 push-5">
+<div id="controls_wrap" class="span-21 push-3">
 
   <div id="controls" class="span-18">
     controls
   </div>
 
-  <div id="social" class="span-3 push-15 last">
+
+  <div id="social" class="span-3 last">
     social links here
   </div>
+
+
+  <div id="times_wrap" class="span-21 last prepend-top">
+    <% (0 .. @col_size-1).each do |num| %>
+    <div class="times_header " style="left: <%= num/@col_size * 100%>%;">
+      <%= (@start_time + num.hour).strftime("%l%P") %>
+    </div>
+    <% end %>
+  </div>
+
 </div>
 
 
-<div id="results_wrap" class="push-4">
+<div id="results_wrap" class="push-2">
 
-  <div id="results" class="span-18 push-1 last">
+  <div id="results" class="span-21 push-1 last">
 
 
 <!-- sample iteration -->
