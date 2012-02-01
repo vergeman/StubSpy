@@ -24,8 +24,8 @@
 
 
   <div id="times_wrap" class="span-21 last prepend-top">
-    <% (0 .. @col_size-1).each do |num| %>
-    <div class="times_header " style="left: <%= num/@col_size * 100%>%;">
+    <% (0 .. @col_size).each do |num| %>
+    <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
       <%= (@start_time + num.hour).strftime("%l%P") %>
     </div>
     <% end %>
@@ -46,11 +46,17 @@
 
       <br>
       <% theater[:list].each do |movie_times| %>
-      
+
+      <div class="movies">
         <% movie_times[:movie_times].each do |res| %>
-         <%= res.name %>
+         <span class="movie" style="left: 
+		<%= (res.time - @start_time) /60/60 / (@col_size + 1) *100 %>%; width: <%= res.duration.to_f / 60 / (@col_size + 1) *100 %>%;" duration="<%= res.duration.to_f / 60 %>" time="<%= res.time %>">
+	   <%= res.name %>
+	 </span>
 	<% end %>
-	<br><br>
+      </div>
+
+
 
      <% end %>
 

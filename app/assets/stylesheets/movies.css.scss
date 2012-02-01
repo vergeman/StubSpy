@@ -33,3 +33,16 @@
     min-height: 780px;
     margin-top: 3.5em;
 }
+
+.movies {
+    border-top: 1px solid red;
+    font-size: .8em;
+    height: 48px;
+
+    .movie {
+	position: absolute;
+	background-color: #aaa;
+	border-radius: 4px;
+	margin-top: 4px;
+    }
+}
