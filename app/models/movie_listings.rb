@@ -57,9 +57,12 @@ class MovieListings
           #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
                puts theater.tname
+
                results = theater.calc
 
+               #theater max time = start movie + duration + buffer (20min)
                set_min_max_time(theater.min_time, theater.max_time)
+
 
                self.listings.push( {:tname => theater.tname,
                                         :list => results,
@@ -83,6 +86,7 @@ class MovieListings
      private
 
      def set_min_max_time(min, max)
+
           if self.min_time.nil? || self.min_time > min
                self.min_time = min
           end
@@ -127,7 +131,8 @@ class MovieListings
           theater_noko.css('.showtimes .movie').each do |m|
 
                ahref = m.css('.name a')
-               
+
+               #some movies lack detailed information
                unless m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/].nil?
                     movie = Movies.new(:mname => ahref.text.to_s,
                                        :mlink => ahref.to_s,
@@ -135,10 +140,11 @@ class MovieListings
                                        :mduration => 
                                        m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/])
 
-#grab showtimes
-               parse_showtimes(m, movie, '.times')
 
-               movies.push movie
+#grab showtimes
+                    parse_showtimes(m, movie, '.times')
+
+                    movies.push movie
                end
           end
      end
@@ -164,7 +170,13 @@ class MovieListings
 
                     t_rec.tmovies = movies
 
-                    theaters.push t_rec
+                    #arthouses/museums tend to have only movies w/
+                    #no information, so make sure we don't make a theater
+                    #of 'no movies'
+                    unless t_rec.tmovies.empty?
+                         theaters.push t_rec
+                    end
+
                end
 
           end

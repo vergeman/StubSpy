@@ -32,12 +32,14 @@ M2----------M2--------M2-------
 
   def calc
        results = []
-
        movie_tuples = []
+
        populate movie_tuples
 
        while (!movie_tuples.empty?)
-            movie_time = movie_tuples.pop
+
+            movie_time = movie_tuples.pop #movie_time is a Movie_tuple
+
             neighbors = find_neighbors(movie_time) #returns []
 
             if !neighbors.empty?
@@ -45,12 +47,20 @@ M2----------M2--------M2-------
                       movie_tuples.push(movie_time.clone.push(neighbor))
                  }
             else
+
                  results.push({:movie_times => movie_time,
                                    :score => movie_time.length })
 
+
+
                  set_max_min_times(movie_time)
+
+
             end
+
        end
+
+
 
        results.sort { |x,y| y[:score] <=> x[:score] }
   end
@@ -64,8 +74,10 @@ M2----------M2--------M2-------
 
        if self.max_time.nil? || (self.max_time < movie_time[-1].time)
             self.max_time = movie_time[-1].time + 
-                 movie_time[-1].duration + TIME_BUF.minutes
+                 movie_time[-1].duration.minutes + TIME_BUF.minutes
        end
+
+
   end
 
 
@@ -77,8 +89,6 @@ M2----------M2--------M2-------
        m_time = latest_movie.time + latest_movie.duration.minutes
 
        movie.mtimes.each { |time|
-            #puts movie.mname
-            #puts time
 
             if ((time > m_time) && (time < m_time + TIME_BUF.minutes))
                  return Movie_tuple.new(movie.mname, time, movie.mduration)
@@ -118,14 +128,18 @@ M2----------M2--------M2-------
 
 
   def populate(movie_tuples)
-
+       #foreach movie
+       
        self.tmovies.each { |movie| 
-            movie.mtimes.each { |time| 
+
+            #foreach time for that movie
+            movie.mtimes.each { |time|
                  m = []
                  m.push(Movie_tuple.new(movie.mname, time, movie.mduration))
                  movie_tuples.push(m)
             }
        }
+
   end
 
 

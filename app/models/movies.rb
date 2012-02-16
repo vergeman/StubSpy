@@ -60,6 +60,7 @@ class Movies
        end
 
        self.mtimes = times_24
+       
   end
 
 

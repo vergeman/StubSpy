@@ -38,27 +38,40 @@
 
   <div id="results" class="span-21 push-1 last">
 
-
-<!-- sample iteration -->
+    <!-- TODO: need to brainstorm ways of truncation -->
     <% @ml.listings.each do |theater| %>
+    <% header = true %>
+
+
+    <% theater[:list].each do |movie_times| %>
+
+    <% if movie_times[:movie_times].length > 1 %>
+
+    <% if header %>
     <br><br>
-      <em><%= theater[:tname] %></em>
+    <em><%= theater[:tname] %></em>
 
-      <br>
-      <% theater[:list].each do |movie_times| %>
+    <br>
+    <% header = false %>
+    <% end %>
 
-      <div class="movies">
-        <% movie_times[:movie_times].each do |res| %>
-         <span class="movie" style="left: 
-		<%= (res.time - @start_time) /60/60 / (@col_size + 1) *100 %>%; width: <%= res.duration.to_f / 60 / (@col_size + 1) *100 %>%;" duration="<%= res.duration.to_f / 60 %>" time="<%= res.time %>">
-	   <%= res.name %>
-	 </span>
-	<% end %>
-      </div>
+    <div class="movies">
+      <% movie_times[:movie_times].each do |res| %>
+
+      <span class="movie" style="left: 
+				 <%= (res.time - @start_time) /60/60 / (@col_size + 1) *100 %>%; width: <%= res.duration.to_f / 60 / (@col_size + 1) *100 %>%;" duration="<%= res.duration.to_f / 60 %>" time="<%= res.time %>">
+	<%= res.name %>
+      </span>
+
+      <% end %>
+
+    </div>
 
 
+    <% end %>
 
-     <% end %>
+
+    <% end %>
 
     <% end %>
 
