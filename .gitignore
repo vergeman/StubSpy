@@ -6,3 +6,4 @@ tmp/
 *.gemspec
 node/ruby/
 *.*~
+filmdev.txt
