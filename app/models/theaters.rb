@@ -1,5 +1,5 @@
 #http://railscasts.com/episodes/219-active-model?view=asciicasthttp://railscasts.com/episodes/219-active-model?view=asciicast
-TIME_BUF = 20
+TIME_BUF = 15
 
 class Theaters
   #include ActiveModel::Validations
@@ -51,11 +51,7 @@ M2----------M2--------M2-------
                  results.push({:movie_times => movie_time,
                                    :score => movie_time.length })
 
-
-
                  set_max_min_times(movie_time)
-
-
             end
 
        end

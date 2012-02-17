@@ -10,25 +10,36 @@
 
     <div id="browse_form" class="span-10 push-1">
 
-    <%= form_tag "/movies", :method => "get" do %>
+      <%= form_tag "/movies", :method => "get" do %>
 
       <%= field_set_tag "GET STARTED", :class=>"prepend-top" do %>
 
-        <%= label_tag(:location, "Location") %>
-	<span class="small">(City, State, Zip, Neighborhood)</span>
+      <%= label_tag(:location, "Location") %>
+      <span class="small">(City, State, Zip, Neighborhood)</span>
 
       <br>
 
       <%= text_field_tag 'location',
-	    "#{@location.city_name}, #{@location.region_name}",
-	    :class => 'text span-6' %>
+	  "#{@location.city_name}, #{@location.region_name}",
+	  :class => 'text span-6' %>
 
+      <br>
+<!-- select -->
+
+<%= label_tag :movie, "Choose a Movie", :class => 'span-6' %>
+
+      <br>
+
+<!-- need movie list -->
+      <%= select_tag 'movie', 
+	  "<option>1</option><option>2</option>".html_safe,
+	  :class => 'select span-6' %>
 
       <%= submit_tag "Spy", :class=>"button span-2 push-1" %>
 
 
       <% end %>
-    <% end %>
+      <% end %>
     </div>
 
 

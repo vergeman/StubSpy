@@ -32,7 +32,8 @@ class MoviesController < ApplicationController
                     @start_time = (@ml.min_time - @ml.min_time.min.minutes - @ml.min_time.sec.seconds) - 1.hour
                     @end_time = (@ml.max_time - @ml.max_time.min.minutes - @ml.max_time.sec.seconds) + 1.hour
                     @col_size = (@end_time - @start_time) /60 / 60
-                    puts @start_time
+
+                    puts @start_time 
                     puts @end_time
                     puts @col_size
 
