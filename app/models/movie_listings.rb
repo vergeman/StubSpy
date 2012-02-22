@@ -5,7 +5,10 @@ class MovieListings
      require 'open-uri'
      require 'nokogiri'
 
-     attr_accessor :ip_addr, :location, :theaters, :listings, :min_time, :max_time
+     require 'thread'
+
+     attr_accessor :ip_addr, :location, :theaters, :listings, 
+     :min_time, :max_time, :all_movies
 
      def initialize(attributes = {})
           attributes.each do |name, value|
@@ -52,8 +55,22 @@ class MovieListings
 
           end
 
+          #a hash of unique movie objs (mid, movie_obj)
+          #populated in parse_doc->parse_movies
+          self.all_movies = {}
           theaters = parse_doc get_doc coords
 
+          #get image information
+          threads = []
+          self.all_movies.each do |mid, movie|
+               threads << Thread.new(mid, movie) do
+                    movie.mimg = get_img(coords, mid, movie)
+               end
+          end
+
+          threads.each do |t|
+               t.join
+          end
           #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
                puts theater.tname
@@ -67,6 +84,8 @@ class MovieListings
                self.listings.push( {:tname => theater.tname,
                                         :list => results,
                                         :tscore => results.length} )
+
+
           }
 
           self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
@@ -107,11 +126,28 @@ class MovieListings
      def get_doc(coords)
           #will pass a parameter to indicate want more results (i..e the 2dn page
           url = URI(URI.encode("http://google.com/movies?near="\
-                    "#{coords[0]},#{coords[1]}&view=list"))
+                    "#{coords[0]},#{coords[1]}\&view=list"))
 
           doc_str = Net::HTTP.get(url)
      end
 
+
+     #TODO: make this check cache so avoid requests
+     def get_img(coords, mid, movie)
+          url = URI(URI.encode("http://google.com/movies?#{mid}"))
+
+          doc_str = Net::HTTP.get(url)
+          doc = Nokogiri::HTML(doc_str)
+
+          str = doc.css('.img img').attr('src').to_s
+
+          if str.include?('tbn')
+               return str
+          else
+               return nil
+          end
+
+     end
 
 
      def parse_showtimes(movie_noko, movie, css_key)
@@ -128,6 +164,7 @@ class MovieListings
 
 
      def parse_movies(theater_noko, movies)
+
           theater_noko.css('.showtimes .movie').each do |m|
 
                ahref = m.css('.name a')
@@ -141,7 +178,11 @@ class MovieListings
                                        m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/])
 
 
-#grab showtimes
+                    #add to hash of all unique movies
+                    #(not theater specific! mduration, mtimes not valid)
+                    self.all_movies[movie.mid] = movie
+
+                    #grab showtimes
                     parse_showtimes(m, movie, '.times')
 
                     movies.push movie

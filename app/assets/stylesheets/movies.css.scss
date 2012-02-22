@@ -8,6 +8,28 @@
     @include header(h3, 1.4em);
     position:fixed;
     height: 100%;
+    font-size: .85em;
+    #social {}
+
+    #location {
+
+    }
+    #loc_submit {
+	font-size: .90em;
+	margin-top: 9px;
+	//margin-top: 5px;
+	margin-left: 7px;
+	cursor: pointer;
+    }
+    #time {
+
+    }
+    #time_slider {}
+
+    #theaters {
+
+    }
+
 }
 
 #controls_wrap {
@@ -15,7 +37,7 @@
     background-color: #aaa;
     border: 1px solid black;
 
-    @include social(0em);
+
     z-index: 100;
     height: 5em;
     #times_wrap {

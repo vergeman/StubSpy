@@ -1,80 +1,101 @@
-<div id="filters_wrap" class="span-4 pull-1">
+<div id="filters_wrap" class="span-6 pull-1">
 
+<!--top header sidebar -->
   <div id="title" class="span-4 prepend-top push-1">
-    <h3>STUBSPY</h3>
+    <div class="span-2">
+      <h3>STUBSPY</h3>
+    </div>
+
+    <div id="social" class="span-2 last">
+      social links
+    </div>
+
   </div>
 
+
+<!--sidebar-->
   <div id="filters" class="push-1">
-    filters
+    
+    <div id="location" class="span-5">
+      <%= form_tag "/movies", :method => "get" do %>
+
+      <%= label_tag(:location, "Change Location") %>
+
+      <br>
+      <%= text_field_tag 'location',
+	  @location,
+	  :id => "location_field",
+	  :class =>"span-3" %>
+
+      <%= submit_tag "Set", :id=>"loc_submit" %>
+      <% end %>
+    </div>
+
+
+
+    <div id="time" class="span-5">
+      <%= label_tag(:time_slider_lbl, "Time", :class=>"span-5 last") %>
+      <div id="time_slider">
+	==slider==
+      </div>
+    </div>
+
+<!--
+   TODO: Tag w/ links to results of that theater
+-->
+    <div id="theaters" class="span-5">
+      <%= label_tag(:theaters, "Theaters", :class=>"span-5 last") %>
+
+      <% @ml.theaters.each do |theater| %>
+      <br>
+      <%= check_box_tag theater.tname, theater.tname, true, %>
+	<%= theater.tname %>
+      <% end %>
+    </div>
+
   </div>
+
+
 
 </div>
 
 
-<div id="controls_wrap" class="span-21 push-3">
 
-  <div id="controls" class="span-18">
+<!--top header-->
+<div id="controls_wrap" class="span-19 push-5">
+
+  <div id="controls" class="span-16">
     controls
   </div>
 
 
-  <div id="social" class="span-3 last">
-    social links here
+  <div id="movie_slider" class="span-19 last prepend-top">
+    <% @ml.all_movies.each do |mid, movie| %>
+    <% unless movie.mimg.nil? %>
+    <img src="http://google.com<%= movie.mimg %>" />
+    <% else %>
+    nil
+    <% end %>
+    <% end %>
   </div>
 
 
-  <div id="times_wrap" class="span-21 last prepend-top">
+<!-- Time breakdown
+  <div id="times_wrap" class="span-19 last prepend-top">
     <% (0 .. @col_size).each do |num| %>
     <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
       <%= (@start_time + num.hour).strftime("%l%P") %>
     </div>
     <% end %>
   </div>
+-->
 
 </div>
 
 
-<div id="results_wrap" class="push-2">
+<!--result bars-->
+<div id="results_wrap" class="push-4">
 
-  <div id="results" class="span-21 push-1 last">
-
-    <!-- TODO: need to brainstorm ways of truncation -->
-    <% @ml.listings.each do |theater| %>
-    <% header = true %>
-
-
-    <% theater[:list].each do |movie_times| %>
-
-    <% if movie_times[:movie_times].length > 1 %>
-
-    <% if header %>
-    <br><br>
-    <em><%= theater[:tname] %></em>
-
-    <br>
-    <% header = false %>
-    <% end %>
-
-    <div class="movies">
-      <% movie_times[:movie_times].each do |res| %>
-
-      <span class="movie" style="left: 
-				 <%= (res.time - @start_time) /60/60 / (@col_size + 1) *100 %>%; width: <%= res.duration.to_f / 60 / (@col_size + 1) *100 %>%;" duration="<%= res.duration.to_f / 60 %>" time="<%= res.time %>">
-	<%= res.name %>
-      </span>
-
-      <% end %>
-
-    </div>
-
-
-    <% end %>
-
-
-    <% end %>
-
-    <% end %>
-
-  </div>
+  <%= render 'results' %>
 
 </div>

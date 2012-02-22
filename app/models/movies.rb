@@ -2,7 +2,7 @@
 
 class Movies
 
-  attr_accessor :mname, :mlink, :mid, :mtimes, :mduration
+  attr_accessor :mname, :mlink, :mid, :mtimes, :mduration, :mimg
 
   def initialize(attributes = {})
     attributes.each do |name, value|

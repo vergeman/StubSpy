@@ -21,12 +21,6 @@ class Theaters
     false
   end
 
-=begin
-T1
-     M1--------M1------M1-------
-M2----------M2--------M2-------
-=end
-  #algo here
 
   Movie_tuple = Struct.new(:name, :time, :duration)
 

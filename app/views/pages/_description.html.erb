@@ -23,18 +23,17 @@
 	  "#{@location.city_name}, #{@location.region_name}",
 	  :class => 'text span-6' %>
 
-      <br>
-<!-- select -->
 
+
+<!--
+      <br>
 <%= label_tag :movie, "Choose a Movie", :class => 'span-6' %>
 
       <br>
-
-<!-- need movie list -->
       <%= select_tag 'movie', 
 	  "<option>1</option><option>2</option>".html_safe,
 	  :class => 'select span-6' %>
-
+-->
       <%= submit_tag "Spy", :class=>"button span-2 push-1" %>
 
 
