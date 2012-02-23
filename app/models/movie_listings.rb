@@ -177,7 +177,6 @@ class MovieListings
                                        :mduration => 
                                        m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/])
 
-                    puts movie.mid
                     #add to hash of all unique movies
                     #(not theater specific! mduration, mtimes not valid)
                     self.all_movies[movie.mid] = movie

@@ -24,17 +24,23 @@
       <br>
       <%= text_field_tag 'location',
 	  @location,
-	  :id => "location_field",
-      :class =>"span-3" %>
+	  :id => "location_field", :class =>"span-3" %>
 
       <%= submit_tag "Set", :id=>"loc_submit" %>
       <% end %>
     </div>
-
-
-    <%= label_tag(:time, "Time", :class=>"span-4 prepend-top") %>
     <br>
-    <div id="time_slider" class="span-3"></div>
+
+    <%= label_tag(:time, "Time", :class=>"span-1 prepend-top") %>
+    <br>
+    <%= text_field_tag 'time',
+	@start_time.strftime("%l"),
+	:id=>"time_display", :class=>"span-2 prepend-top" %>
+
+    <div id="time_slider" class="span-3" 
+	 start_time="<%=@start_time.hour %>"
+	 end_time="<%=((@end_time - @start_time) /60 /60 + @start_time.hour).to_i %>">
+    </div>
 
 
     <!--
@@ -112,10 +118,10 @@
 <!--result bars-->
 <div id="results_wrap" class="span-19 push-4">
 
-<!--
-  <%= # render 'results' 
-  %>
--->
+  <!--
+     <%= # render 'results' 
+	 %>
+     -->
 </div>
 
 <script>
