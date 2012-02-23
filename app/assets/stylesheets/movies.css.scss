@@ -49,16 +49,16 @@
 }
 */
 
+$jcarousel_width: 540px;
+$jcarousel_padding: 60px;
 
 #movie_slider {
     position: fixed;
-    background-color: #fff;
-    border: 1px solid black;
     z-index: 100;
     height: 14em;
 
     .movie_title {
-	color: black;
+	color: white;
 	font-size: .75em;
 	text-align: center;
 	overflow: hidden;
@@ -67,23 +67,43 @@
     .jcarousel {
 	position: relative;
 	overflow: hidden;
-	background-color: #fff;
+	background-color: $main_bg;
+
+	//width of the whole shebang - spanned
+	//width: $jcarousel_width;
+	padding: 20px 0px 4px ($jcarousel_padding*2 - 8px);
 
 	ul {
 	    width: 20000em;
 	    position: absolute;
 	    list-style: none;
-	    margin: 0;
+	    margin: 20px;
 	    padding: 0;
 	}
 
 	li {
 	    float: left;
-	    padding: 8px;
 	}
     }
+
+    //internal width (inside the padding)
+    .jcarousel-clip-horizontal, .jcarousel-clip {
+	width:  $jcarousel_width - 20px;
+	overflow: hidden;
+    }
+    .jcarousel-item-horizontal {
+	margin-left: 0px;
+	padding: 10px;
+    }
+
     /*buttons*/
+
+
     .jcarousel-prev, jcarousel-prev-horizontal  {	
+	position:absolute;
+	top: 40px;
+
+ 	left: 80px;
 
 	width: 20px;
 	height: 20px;
@@ -91,7 +111,10 @@
 	cursor:pointer;
     }
     .jcarousel-next, jcarousel-next-horizontal {
+	position:absolute;
+	top: 40px;
 
+	right: 193px;
 
 	width: 20px;
 	height: 20px;
@@ -106,7 +129,7 @@
     color: black;
     height: 100%;
     min-height: 780px;
-    margin-top: 11.5em;
+    margin-top: 15em;
 }
 
 .movies {
