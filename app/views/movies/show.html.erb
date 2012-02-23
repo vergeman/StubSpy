@@ -70,7 +70,7 @@
       <ul>
 
 	<% @ml.all_movies.each do |mid, movie| %>
-	<li style="width:85px;">
+	<li style="width:85px;" class="slider_item", mid="<%= movie.mid %>">
 
 	  <% unless movie.mimg.nil? %>    
 	  <!-- 100x150-->

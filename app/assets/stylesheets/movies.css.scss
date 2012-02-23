@@ -83,7 +83,9 @@ $jcarousel_padding: 60px;
 
 	li {
 	    float: left;
+	    cursor: pointer;
 	}
+	.slider_item {}
     }
 
     //internal width (inside the padding)
@@ -94,6 +96,7 @@ $jcarousel_padding: 60px;
     .jcarousel-item-horizontal {
 	margin-left: 0px;
 	padding: 10px;
+	height: 160px;
     }
 
     /*buttons*/

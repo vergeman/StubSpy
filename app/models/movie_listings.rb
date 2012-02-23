@@ -64,7 +64,7 @@ class MovieListings
           threads = []
           self.all_movies.each do |mid, movie|
                threads << Thread.new(mid, movie) do
-                    movie.mimg = get_img(coords, mid, movie)
+                    movie.mimg = get_img(coords, mid)
                end
           end
 
@@ -133,8 +133,8 @@ class MovieListings
 
 
      #TODO: make this check cache so avoid requests
-     def get_img(coords, mid, movie)
-          url = URI(URI.encode("http://google.com/movies?#{mid}"))
+     def get_img(coords, mid)
+          url = URI(URI.encode("http://google.com/movies?mid=#{mid}"))
 
           doc_str = Net::HTTP.get(url)
           doc = Nokogiri::HTML(doc_str)
@@ -173,11 +173,11 @@ class MovieListings
                unless m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/].nil?
                     movie = Movies.new(:mname => ahref.text.to_s,
                                        :mlink => ahref.to_s,
-                                       :mid => ahref.attr('href').to_s[/mid(.*)/],
+                                       :mid => ahref.attr('href').to_s[/mid=(.+)/, 1].to_s,
                                        :mduration => 
                                        m.css('.info').text.to_s[/([0-9]+hr(\s)[0-9]+min)+/])
 
-
+                    puts movie.mid
                     #add to hash of all unique movies
                     #(not theater specific! mduration, mtimes not valid)
                     self.all_movies[movie.mid] = movie
