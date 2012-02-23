@@ -1,6 +1,6 @@
 <div id="filters_wrap" class="span-6 pull-1">
 
-<!--top header sidebar -->
+  <!--top header sidebar -->
   <div id="title" class="span-4 prepend-top push-1">
     <div class="span-2">
       <h3>STUBSPY</h3>
@@ -13,7 +13,7 @@
   </div>
 
 
-<!--sidebar-->
+  <!--sidebar-->
   <div id="filters" class="push-1">
     
     <div id="location" class="span-5">
@@ -25,7 +25,7 @@
       <%= text_field_tag 'location',
 	  @location,
 	  :id => "location_field",
-	  :class =>"span-3" %>
+      :class =>"span-3" %>
 
       <%= submit_tag "Set", :id=>"loc_submit" %>
       <% end %>
@@ -40,16 +40,16 @@
       </div>
     </div>
 
-<!--
-   TODO: Tag w/ links to results of that theater
--->
+    <!--
+       TODO: Tag w/ links to results of that theater
+      -->
     <div id="theaters" class="span-5">
       <%= label_tag(:theaters, "Theaters", :class=>"span-5 last") %>
 
       <% @ml.theaters.each do |theater| %>
       <br>
       <%= check_box_tag theater.tname, theater.tname, true, %>
-	<%= theater.tname %>
+      <%= theater.tname %>
       <% end %>
     </div>
 
@@ -64,31 +64,44 @@
 <!--top header-->
 <div id="controls_wrap" class="span-19 push-5">
 
-  <div id="controls" class="span-16">
-    controls
-  </div>
+  <!--  <div id="mycarousel" class="span-19 last prepend-top jcarousel clear">-->
+
+  <div id="movie_slider" class="span-19">
 
 
-  <div id="movie_slider" class="span-19 last prepend-top">
-    <% @ml.all_movies.each do |mid, movie| %>
-    <% unless movie.mimg.nil? %>
-    <img src="http://google.com<%= movie.mimg %>" />
-    <% else %>
-    nil
-    <% end %>
-    <% end %>
-  </div>
+    <div id="mycarousel" class="jcarousel span-12 push-4 last">
+
+      <ul>
+
+	<% @ml.all_movies.each do |mid, movie| %>
+	<li style="width:85px;">
+
+	  <% unless movie.mimg.nil? %>    
+	  <!-- 100x150-->
+	  <img src="http://google.com<%= movie.mimg %>"
+	       width="85px" height="127.5px" />
+
+	  <% else %>
+	  x_x no pic
+	  <% end %>
+
+	</li>
+	<% end %>
 
 
-<!-- Time breakdown
-  <div id="times_wrap" class="span-19 last prepend-top">
-    <% (0 .. @col_size).each do |num| %>
-    <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
-      <%= (@start_time + num.hour).strftime("%l%P") %>
+      </ul>
     </div>
-    <% end %>
+
   </div>
--->
+  <!-- Time breakdown
+       <div id="times_wrap" class="span-19 last prepend-top">
+	 <% (0 .. @col_size).each do |num| %>
+	 <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
+	   <%= (@start_time + num.hour).strftime("%l%P") %>
+	 </div>
+	 <% end %>
+       </div>
+       -->
 
 </div>
 
