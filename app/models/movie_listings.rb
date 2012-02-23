@@ -73,7 +73,7 @@ class MovieListings
           end
           #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
-               puts theater.tname
+               #puts theater.tname
 
                results = theater.calc
 

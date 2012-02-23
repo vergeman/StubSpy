@@ -3,4 +3,9 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  $('#mycarousel').jcarousel();
+  $('#mycarousel').jcarousel( {scroll: 5});
+
+  $('#time_slider').slider();
+
+  $('.slider_link').click (e) ->
+    e.preventDefault()

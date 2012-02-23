@@ -32,19 +32,16 @@
     </div>
 
 
+    <%= label_tag(:time, "Time", :class=>"span-4 prepend-top") %>
+    <br>
+    <div id="time_slider" class="span-3"></div>
 
-    <div id="time" class="span-5">
-      <%= label_tag(:time_slider_lbl, "Time", :class=>"span-5 last") %>
-      <div id="time_slider">
-	==slider==
-      </div>
-    </div>
 
     <!--
        TODO: Tag w/ links to results of that theater
       -->
     <div id="theaters" class="span-5">
-      <%= label_tag(:theaters, "Theaters", :class=>"span-5 last") %>
+      <%= label_tag(:theaters, "Theaters", :class=>"span-5 prepend-top last") %>
 
       <% @ml.theaters.each do |theater| %>
       <br>
@@ -69,7 +66,7 @@
   <div id="movie_slider" class="span-19">
 
 
-    <div id="mycarousel" class="jcarousel span-12 push-4 last">
+    <div id="mycarousel" class="jcarousel span-13 push-3 last">
 
       <ul>
 
@@ -78,13 +75,20 @@
 
 	  <% unless movie.mimg.nil? %>    
 	  <!-- 100x150-->
-	  <img src="http://google.com<%= movie.mimg %>"
-	       width="85px" height="127.5px" />
+
+	  <%= link_to(image_tag("http://google.com#{movie.mimg}",
+	      :width=>"85px", :height=>"127.5px", :title=>"#{movie.mname}"),
+	  "#", :class => "slider_link") %>
 
 	  <% else %>
 	  x_x no pic
 	  <% end %>
 
+	  <br>
+
+	  <div class="movie_title">
+	    <%= movie.mname %>
+	  </div>
 	</li>
 	<% end %>
 
