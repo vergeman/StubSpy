@@ -110,8 +110,14 @@
 
 
 <!--result bars-->
-<div id="results_wrap" class="push-4">
+<div id="results_wrap" class="span-19 push-4">
 
-  <%= render 'results' %>
-
+<!--
+  <%= # render 'results' 
+  %>
+-->
 </div>
+
+<script>
+  var results = <%= @ml.listings.to_json.to_s.html_safe %>
+</script>

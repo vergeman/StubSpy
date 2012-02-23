@@ -6,6 +6,26 @@ Choose your location and let StubSpy do the rest!
 
 ==todo
 
+UI
+add icons for movie scroll
+add on movie select highlight
+add time filter
+link from theater to results show
+
+revamp results screen
+defloat the footer
+
+MODEL
+
+JS: on click, filter by movie results
+JS: on checkbox, hide theater
+
+
+
+add social links
+
+===    
+
 *revamp input and display
       "choose your own adventure" style; sequential, progressive inputs?
 
