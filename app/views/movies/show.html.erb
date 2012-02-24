@@ -56,7 +56,9 @@
       <% @ml.theaters.each do |theater| %>
       <br>
       <%= check_box_tag theater.tname, theater.tname, true, %>
-      <%= theater.tname %>
+      <span id="<%= theater.tid %>" class="theater_name">
+	<%= theater.tname %>
+      </span>
       <% end %>
     </div>
 
@@ -70,8 +72,6 @@
 
 <!--top header-->
 <div id="controls_wrap" class="span-19 push-5">
-
-  <!--  <div id="mycarousel" class="span-19 last prepend-top jcarousel clear">-->
 
   <div id="movie_slider" class="span-19">
 
@@ -106,26 +106,24 @@
     </div>
 
   </div>
-<!--
-       <div id="times_wrap" class="span-19 last prepend-top">
-	 <% (0 .. @col_size).each do |num| %>
-	 <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
-	   <%= (@start_time + num.hour).strftime("%l%P") %>
-	 </div>
-	 <% end %>
-       </div>
--->
+
+
+<!--Times-->
+  <div id="times_wrap" class="span-19 last">
+    <% (0 .. @col_size).each do |num| %>
+    <div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
+      <%= (@start_time + num.hour).strftime("%l%P") %>
+    </div>
+    <% end %>
+  </div>
+
 
 </div>
 
 
 <!--result bars-->
 <div id="results_wrap" class="span-19 push-4">
-
-<!--
-     <%= #render 'results' 
-	 %>
--->
+     <%= render 'results' %>
 </div>
 
 <script>

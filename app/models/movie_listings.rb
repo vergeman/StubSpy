@@ -82,6 +82,7 @@ class MovieListings
 
 
                self.listings.push( {:tname => theater.tname,
+                                        :tid => theater.tid,
                                         :list => results,
                                         :tscore => results.length} )
 

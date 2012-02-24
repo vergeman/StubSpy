@@ -7,16 +7,17 @@ Choose your location and let StubSpy do the rest!
 ==todo
 
 UI
-add icons for movie scroll
+revamp results screen
 add time filter
 link from theater to results show
-revamp results screen
+
 
 
 MODEL
 JS: on click, filter by movie results
 JS: on checkbox, hide theater
 
+remove "close dupes" from schedule (i.e. 3d vs imax vs reg)
 
 
 add social links

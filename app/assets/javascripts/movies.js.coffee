@@ -49,3 +49,11 @@ jQuery ->
       $(this).addClass("selected_movie")
       filter_movie($(this))
 
+#not exactly what I want
+  $('.movies').hover(
+    () -> $("#" + $(this).parent().attr('tid')).css("color", "gold")
+    () -> $("#" + $(this).parent().attr('tid')).css("color", "white"))
+
+  $('.movies').hover(
+    () -> console.log($(this).offset())
+  )
