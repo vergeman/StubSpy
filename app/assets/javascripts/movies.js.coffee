@@ -8,7 +8,17 @@ filter_movie = (mid) ->
 
 
 slider_action = (event, ui) ->
-  $('#time_display').val( ui.value )
+  time = ui.value
+  if time < 12
+    $('#time_display').val( time + ':00 am' )
+  else if time > 24
+    $('#time_display').val( (time - 24) + ':00 am' )
+  else if time == 24
+    $('#time_display').val( (time - 12) + ':00 am' )
+  else if time > 12 and time < 24
+    $('#time_display').val( (time - 12) + ":00 pm" )
+  else
+    $('#time_display').val( time + ":00 pm" )
 
 
 jQuery ->

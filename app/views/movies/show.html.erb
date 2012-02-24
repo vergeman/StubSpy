@@ -31,17 +31,21 @@
     </div>
     <br>
 
-    <%= label_tag(:time, "Time", :class=>"span-1 prepend-top") %>
+    <%= label_tag(:time, "Start Time", :class=>"span-5 prepend-top") %>
     <br>
-    <%= text_field_tag 'time',
-	@start_time.strftime("%l"),
-	:id=>"time_display", :class=>"span-2 prepend-top" %>
 
-    <div id="time_slider" class="span-3" 
+    <div id="time_slider"
+	 class="span-4" 
 	 start_time="<%=@start_time.hour %>"
-	 end_time="<%=((@end_time - @start_time) /60 /60 + @start_time.hour).to_i %>">
+	 end_time="<%=((@end_time - @start_time) /60 /60 + 
+		   @start_time.hour).to_i %>">
     </div>
 
+    <div class="time_slider_filler span-5 last">
+    </div>
+    <%= text_field_tag 'time',
+	@start_time.strftime("%l:00 %P"),
+	:id=>"time_display", :class=>"span-2 append-3 last prepend-top" %>
 
     <!--
        TODO: Tag w/ links to results of that theater
