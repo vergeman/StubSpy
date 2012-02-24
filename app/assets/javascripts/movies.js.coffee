@@ -7,11 +7,13 @@ filter_movie = (mid) ->
   console.log (movie.name for movie in sequence.movie_times for sequence in theater.list for theater in results)
 
 
-slider_action = () ->
-  $('#time_display').val( $('#time_slider').slider("value"))
+slider_action = (event, ui) ->
+  $('#time_display').val( ui.value )
+
 
 jQuery ->
   $('#mycarousel').jcarousel( {scroll: 5});
+
 
   $('#time_slider').slider( {
     range: "max",
@@ -24,6 +26,7 @@ jQuery ->
 
   $('.slider_link').click (e) ->
     e.preventDefault()
+
 
   $('.jcarousel li').click () ->
     if $(this).css("background-color") == "rgb(255, 215, 0)"
