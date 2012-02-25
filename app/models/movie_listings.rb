@@ -89,7 +89,7 @@ class MovieListings
 
           }
 
-          self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
+          #self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
 
           theaters
      end

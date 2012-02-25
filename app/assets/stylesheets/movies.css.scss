@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "pages.css.scss";
+@import "jcarousel.css.scss";
 
 #filters_wrap {
     @include boxes($desc_bg, $border_radius, $desc_border, $shadow);
@@ -24,10 +25,16 @@
     #time_slider {
 	margin-left: 4px;
 	margin-top: 5px;
+
+	.ui-slider-handle, .ui-slider-range {
+	    cursor: pointer;
+	}	
     }
     #time_display {
 	border: none;
-	margin-top: 10px;
+	margin-top: 3px;
+	font-size: 1.1em;
+	color: gold;
     }
     #theaters {
 
@@ -35,137 +42,46 @@
 
 }
 
-#times_wrap {
-    position: fixed;
-    padding: 2px 0px;
-    background-color: #aaa;
-    border: 1px solid black;
-    z-index: 100;
-    height: 1.6em;
-    margin-top: 174px;
-
-    .times_header {
-	position:absolute;
-    }
+#results_filler {
+    margin-top: 12.5em;
 }
-
-/*
-  #controls_wrap {
-
-
-.times_header {
-position: absolute;
-}
-
-}
-*/
-
-$jcarousel_width: 540px;
-$jcarousel_padding: 60px;
-
-@mixin jcarousel-button {
-    position:absolute;
-    background: url('/assets/orange-arrow/orange_80x80.png') no-repeat transparent;
-    background-size: 100%;
-    -moz-background-size: 100%;
-    width: 80px;
-    height: 80px;
-    cursor:pointer;
-    opacity: 0.8;
-}
-
-#movie_slider {
-    position: fixed;
-    z-index: 100;
-    height: 14em;
-
-    .movie_title {
-	color: white;
-	font-size: .75em;
-	text-align: center;
-	overflow: hidden;
-    }
-
-    .jcarousel {
-	position: relative;
-	overflow: hidden;
-	background-color: $main_bg;
-
-	//width of the whole shebang - spanned
-	padding: 5px 0px 4px ($jcarousel_padding*2 - 8px);
-
-	ul {
-	    width: 20000em;
-	    position: absolute;
-	    list-style: none;
-	    margin: 20px;
-	    padding: 0;
-	}
-
-	li {
-	    float: left;
-	    cursor: pointer;
-	}
-	.slider_item {}
-    }
-
-    //internal width (inside the padding)
-    .jcarousel-clip-horizontal, .jcarousel-clip {
-	width:  $jcarousel_width - 20px;
-	overflow: hidden;
-    }
-    .jcarousel-item-horizontal {
-	margin-left: 0px;
-	padding: 10px;
-	height: 160px;
-    }
-
-    /*buttons*/
-
-    .jcarousel-prev, jcarousel-prev-horizontal  {
-	top: 40px;
- 	left: 40px;
-	@include jcarousel-button;
-	-webkit-transform: rotate(-180deg);
-	-moz-transform: rotate(-180deg);
-    }
-    .jcarousel-next, jcarousel-next-horizontal {
-	top: 40px;
-	right: 153px;
-	@include jcarousel-button;
-    }
-    .jcarousel-prev:hover, .jcarousel-next:hover {
-	opacity: 1.0;
-    }
-
-    .jcarousel-prev-disabled, .jcarousel-next-disabled,
-    .jcarousel-prev-disabled:hover, .jcarousel-next-disabled:hover  {
-	opacity: 0.3;
-    }
-
-
-}
-
 #results {
     color: black;
     height: 100%;
     min-height: 780px;
-    margin-top: 15em;
-    border: none;
+
 }
 .theater {
-    @include boxes(#900, $border_radius, $desc_border, $shadow);
+    //border: 1px solid #777777;
     background: #fff;
 
     .theater_name {
-	font-size: 1.4em;
+	font-size: 1.4em;	
 	padding: 10px;
     }
 }
 
 
+$results_margin: 4px;
+#times_wrap {
+
+    padding: 2px 0px;
+    background-color: #cccccc;
+    height: 1.6em;
+    color: black;
+
+    .times_header {
+	position: absolute;
+	margin-left: $results_margin;
+    }
+}
+
+
+.movies_wrap {
+    margin-top: 3em;
+}
+
 .movies {
-    border-top: 1px solid red;
     font-size: .8em;
     height: 80px;
     background: #fff;

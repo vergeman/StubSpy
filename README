@@ -8,9 +8,20 @@ Choose your location and let StubSpy do the rest!
 
 UI
 revamp results screen
+       put movie header on top, (fixed)
+       timeline below (fixked)
+       scroll one theater result
+
+       move checkboxes to links
+
+       thin down hipmunk strips
+       add time dividers downward
+
+
 add time filter
 link from theater to results show
 
+change movie-select color
 
 
 MODEL

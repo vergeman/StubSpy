@@ -50,8 +50,6 @@ class Theaters
 
        end
 
-
-
        results.sort { |x,y| y[:score] <=> x[:score] }
   end
 

@@ -1,0 +1,19 @@
+<div class="movies">
+
+  <% movie_times[:movie_times].each do |res| %>
+
+  <div class="movie_box"
+       style="left: <%= (res.time - @start_time) /60/60 / (@col_size + 1) *100 %>%;
+	      width: <%= res.duration.to_f / 60 / (@col_size + 1) *100 %>%;
+	      margin-left: 4px;"
+       duration="<%= res.duration.to_f / 60 %>"
+       time="<%= res.time %>">
+
+
+    <div class="movie_box_title">
+      <%= truncate(res.name, :length=>30) %>
+    </div>
+
+  </div>
+  <% end %>
+</div>

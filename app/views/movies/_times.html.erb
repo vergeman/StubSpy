@@ -1,0 +1,5 @@
+<% (0 .. @col_size).each do |num| %>
+<div class="times_header " style="left: <%= num/(@col_size+1) * 100%>%;">
+  <%= (@start_time + num.hour).strftime("%l%P") %>
+</div>
+<% end %>
