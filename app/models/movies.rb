@@ -22,6 +22,7 @@ class Movies
   def set_mtimes(times)
        pm = false
        _24hr = true
+
        times_24 = []
        now = Time.now
   
@@ -31,16 +32,21 @@ class Movies
 
             hr, min = t[0].to_s.split(':', 2)
 
+            #change to pm
             if (min.include?("pm"))
                  pm = true
                  _24hr = false
             end
 
+            #change from pm to am
             if (min.include?("am") && !_24hr)
                  pm = false
             end
 
-
+            #only am start - hackish
+            if (min.include?("am") && times.length < 3)
+                 _24hr = false
+            end
 
             if (_24hr)
                  augment =0
@@ -91,8 +97,7 @@ class Movies
 =end
             times_24.push t
        end
-       puts self.mname
-       puts times_24
+
        self.mtimes = times_24
 
   end
