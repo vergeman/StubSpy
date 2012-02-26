@@ -19,9 +19,9 @@ class Movies
   end
 
   #TODO: don't change to 24hr time if not already 24 hr time
-
   def set_mtimes(times)
        pm = false
+       _24hr = true
        times_24 = []
        now = Time.now
   
@@ -31,6 +31,39 @@ class Movies
 
             hr, min = t[0].to_s.split(':', 2)
 
+            if (min.include?("pm"))
+                 pm = true
+                 _24hr = false
+            end
+
+            if (min.include?("am") && !_24hr)
+                 pm = false
+            end
+
+
+
+            if (_24hr)
+                 augment =0
+                 if (hr.to_i == 12)
+                      augment = 12
+                 end
+
+                 t = Time.new(now.year, now.month, now.day,
+                              hr.to_i - augment, min[/[0-9]+/]) + 24*60*60 #add a day
+            elsif (pm)
+                 augment = 0
+                 if hr.to_i != 12
+                      augment = 12
+                 end
+                 t = Time.new(now.year, now.month, now.day,
+                              hr.to_i + augment, min[/[0-9]+/])
+
+            elsif (!pm & !_24hr)
+                 t = Time.new(now.year, now.month, now.day,
+                              hr.to_i, min[/[0-9]+/])
+            end
+
+=begin
             #midnight seems to be latest
             if ((!pm && min.include?("am") && hr.to_i == 12) ||
                 ((!pm && hr.to_i == 12)))
@@ -55,12 +88,13 @@ class Movies
                               hr.to_i + augment, min[/[0-9]+/])
 
             end
-
+=end
             times_24.push t
        end
-
+       puts self.mname
+       puts times_24
        self.mtimes = times_24
-       
+
   end
 
 

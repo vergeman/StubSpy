@@ -31,6 +31,9 @@ class MoviesController < ApplicationController
 
                     @col_size = (@end_time - @start_time) / 60 / 60
 
+                    puts @end_time
+                    puts @start_time
+
                     #generate time headers based on that
                     #populate: use some % basis to margin-left the movie from start time
                     #width of movie as % duration of total time
