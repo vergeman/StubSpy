@@ -8,25 +8,51 @@ Choose your location and let StubSpy do the rest!
 
 UI
 revamp results screen
-       put movie header on top, (fixed)
-       timeline below (fixked)
-       scroll one theater result
+       change to display one theater
+       	      ?REST paths then?
+	      the entire result set is large...~ 200k avg 2megs w/ times sq - unreasonsable
+	      POST requests?       	      
 
-       move checkboxes to links
+	      !best compromise is to ignore restful paths; generate the first request, and then accept POST?
+	      	   - will need a cache
+		   what do I gain by REST
+		   	'built-in' persistence model
+		REST WONT ALLOW USER FILTERS TO MAINTAIN STATE				 
+
+
+		how to deal w/ really large results?
+		    GET: gets 1?
+		    	 but we need aggregate information 
+			     i.e. list of scrollable movies
+
+		real question --> is do we generate all results?  YES.
+		     we create a json path for only that specific movie?		     	
+		     ok so we generate all datga, persist everything but only transmit the first movie to the client
+		     and subsequent requests wil have data tfor any call
+
+		     so now if i persist - do i need a model?  tid by key-value store should work
+		     	mongodb vs redis...
+				seems like mongodb maybe best
+
+
+	     probably add a date filter (main page & subsequent choice)
+
+
+       link theaters
 
        thin down hipmunk strips
-       add time dividers downward
+
+       add time dividers/indicators downward
 
 
-add time filter
 link from theater to results show
 
 change movie-select color
 
 
 MODEL
-JS: on click, filter by movie results
-JS: on checkbox, hide theater
+JS: on movie click, filter by movie results
+JS: on time selection, filter by time;
 
 remove "close dupes" from schedule (i.e. 3d vs imax vs reg)
 

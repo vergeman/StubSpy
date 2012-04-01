@@ -137,6 +137,7 @@ class MovieListings
      def get_img(coords, mid)
           url = URI(URI.encode("http://google.com/movies?mid=#{mid}"))
 
+
           doc_str = Net::HTTP.get(url)
           doc = Nokogiri::HTML(doc_str)
 

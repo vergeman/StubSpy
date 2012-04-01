@@ -81,7 +81,7 @@
 	  <% unless movie.mimg.nil? %>    
 	  <!-- 100x150-->
 
-	  <%= link_to(image_tag("http://google.com#{movie.mimg}",
+	  <%= link_to(image_tag("#{movie.mimg}",
 	      :width=>"85px", :height=>"127.5px", :title=>"#{movie.mname}"),
 	  "#", :class => "slider_link") %>
 
