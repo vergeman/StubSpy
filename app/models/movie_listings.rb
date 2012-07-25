@@ -141,14 +141,17 @@ class MovieListings
           doc_str = Net::HTTP.get(url)
           doc = Nokogiri::HTML(doc_str)
 
-          str = doc.css('.img img').attr('src').to_s
-
-          if str.include?('tbn')
-               return str
-          else
+#working here
+          str = nil
+          if doc.css('.img img').empty?
                return nil
+          else
+               str = doc.css('.img img').attr('src').to_s
+               if str.include?('tbn')
+                    return str
+               end
           end
-
+               return nil
      end
 
 
