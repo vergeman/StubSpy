@@ -135,7 +135,7 @@ class MovieListings
 
      #TODO: make this check cache so avoid requests
      def get_img(coords, mid)
-          url = URI(URI.encode("http://google.com/movies?mid=#{mid}"))
+          url = URI(URI.encode("http://google.com/movies?near=#{coords[0]}, #{coords[1]}&mid=#{mid}"))
 
 
           doc_str = Net::HTTP.get(url)
