@@ -45,9 +45,7 @@
       <%= @start_time.strftime("%l:00 %P") %>
     </div>
 
-    <!--
-       TODO: Tag w/ links to results of that theater
-      -->
+
     <div id="theaters" class="span-5">
       <%= label_tag(:theaters, "Theaters", :class=>"span-5 prepend-top last") %>
 
@@ -105,6 +103,11 @@
 
   </div>
 
+
+  <!--Times-->
+  <div id="times_wrap" class="span-19 last">
+    <%= render 'times' %>
+  </div>
 
 
 

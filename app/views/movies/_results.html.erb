@@ -2,7 +2,6 @@
 </div>
 
 <div id="results" class="span-19 push-1 last">
-
   <% 
      @ml.listings.each do |theater|
      header = true
@@ -17,13 +16,9 @@
        tid="<%= theater[:tid] %>">
 
     <div class="theater_name">
-      <a name = "<%= theater[:tid] %>_name" style="padding-top: 11.9em;">
+      <a class="theater_link" name = "<%= theater[:tid] %>_name">
 	<%= theater[:tname] %>
       </a>
-    </div>
-    <!--Times-->
-    <div id="times_wrap" class="span-19 last">
-      <%= render 'times' %>
     </div>
 
     <div class="movies_wrap">

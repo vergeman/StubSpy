@@ -43,7 +43,7 @@
 }
 
 #results_filler {
-    margin-top: 12.5em;
+    margin-top: 14em;
 }
 #results {
     color: black;
@@ -59,12 +59,19 @@
 	font-size: 1.4em;	
 	padding: 10px;
     }
+    .theater_link {
+	padding-top: 13.0em;
+	text-decoration:none;
+	color:black;
+    }
 }
 
 
 $results_margin: 4px;
 #times_wrap {
-
+    position:fixed;
+    z-index:100;
+    margin-top:15.5em;
     padding: 2px 0px;
     background-color: #cccccc;
     height: 1.6em;

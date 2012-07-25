@@ -71,6 +71,7 @@ class MovieListings
           threads.each do |t|
                t.join
           end
+
           #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
                #puts theater.tname
@@ -91,6 +92,8 @@ class MovieListings
 
           #self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
 
+          #alphabetize 'all_movies' filter for easy viewing
+          self.all_movies = self.all_movies.sort_by {|mid, movie| movie.mname}
           theaters
      end
 
