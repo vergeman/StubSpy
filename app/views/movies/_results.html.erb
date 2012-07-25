@@ -17,9 +17,10 @@
        tid="<%= theater[:tid] %>">
 
     <div class="theater_name">
-      <%= theater[:tname] %>
+      <a name = "<%= theater[:tid] %>_name" style="padding-top: 11.9em;">
+	<%= theater[:tname] %>
+      </a>
     </div>
-
     <!--Times-->
     <div id="times_wrap" class="span-19 last">
       <%= render 'times' %>
@@ -38,6 +39,7 @@
   <% end %> <!-- end movies loop -->
     </div>
   </div>
+
   <% end %> <!-- end theater loop -->
 
 

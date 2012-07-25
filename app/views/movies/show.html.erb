@@ -53,7 +53,9 @@
 
       <% @ml.theaters.each do |theater| %>
       <div id="<%= theater.tid %>" class="theater_name">
-	<%= theater.tname %>
+	<a href="#<%=theater.tid %>_name" %>
+	  <%= theater.tname %>
+	</a>
       </div>
       <% end %>
     </div>
