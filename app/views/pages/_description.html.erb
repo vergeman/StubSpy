@@ -10,7 +10,9 @@
 
     <div id="browse_form" class="span-10 push-1">
 
-      <%= form_tag "/movies", :method => "get" do %>
+      <% if @location.country_code2 == "US" %>
+
+      <%= form_tag "/movies", :method => "get" do%>
 
       <%= field_set_tag "GET STARTED", :class=>"prepend-top" do %>
 
@@ -23,22 +25,18 @@
 	  "#{@location.city_name}, #{@location.region_name}",
 	  :class => 'text span-6' %>
 
-
-
-<!--
-      <br>
-<%= label_tag :movie, "Choose a Movie", :class => 'span-6' %>
-
-      <br>
-      <%= select_tag 'movie', 
-	  "<option>1</option><option>2</option>".html_safe,
-	  :class => 'select span-6' %>
--->
       <%= submit_tag "Spy", :class=>"button span-2 push-1" %>
-
-
       <% end %>
       <% end %>
+
+      <% else %>
+      <br>
+      <p>
+      <h3 style="color: white; line-height: 1.4em;"> Sorry, currently we only 
+	<br> operate in the United States </h3>
+      </p>
+      <% end %>
+
     </div>
 
 

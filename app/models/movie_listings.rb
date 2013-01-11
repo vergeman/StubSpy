@@ -71,6 +71,7 @@ class MovieListings
           threads.each do |t|
                t.join
           end
+
           #foreach theater, calc and grab max/min times for layoaut
           theaters.each { |theater|
                #puts theater.tname
@@ -91,6 +92,8 @@ class MovieListings
 
           #self.listings.sort! { |x,y| y[:tscore] <=> x[:tscore] }
 
+          #alphabetize 'all_movies' filter for easy viewing
+          self.all_movies = self.all_movies.sort_by {|mid, movie| movie.mname}
           theaters
      end
 
@@ -135,20 +138,23 @@ class MovieListings
 
      #TODO: make this check cache so avoid requests
      def get_img(coords, mid)
-          url = URI(URI.encode("http://google.com/movies?mid=#{mid}"))
+          url = URI(URI.encode("http://google.com/movies?near=#{coords[0]}, #{coords[1]}&mid=#{mid}"))
 
 
           doc_str = Net::HTTP.get(url)
           doc = Nokogiri::HTML(doc_str)
 
-          str = doc.css('.img img').attr('src').to_s
-
-          if str.include?('tbn')
-               return str
-          else
+#working here
+          str = nil
+          if doc.css('.img img').empty?
                return nil
+          else
+               str = doc.css('.img img').attr('src').to_s
+               if str.include?('tbn')
+                    return str
+               end
           end
-
+               return nil
      end
 
 

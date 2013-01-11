@@ -45,15 +45,15 @@
       <%= @start_time.strftime("%l:00 %P") %>
     </div>
 
-    <!--
-       TODO: Tag w/ links to results of that theater
-      -->
+
     <div id="theaters" class="span-5">
       <%= label_tag(:theaters, "Theaters", :class=>"span-5 prepend-top last") %>
 
       <% @ml.theaters.each do |theater| %>
       <div id="<%= theater.tid %>" class="theater_name">
-	<%= theater.tname %>
+	<a href="#<%=theater.tid %>_name" %>
+	  <%= theater.tname %>
+	</a>
       </div>
       <% end %>
     </div>
@@ -103,6 +103,11 @@
 
   </div>
 
+
+  <!--Times-->
+  <div id="times_wrap" class="span-19 last">
+    <%= render 'times' %>
+  </div>
 
 
 
